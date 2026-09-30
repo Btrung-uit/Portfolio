@@ -932,9 +932,13 @@ footer {
         height: auto;
     }
     .hero-content {
+        display: flex;
         flex-direction: column;
+        align-items: center;
         text-align: center;
         gap: 0;
+        padding-inline: 20px;
+        width: 100%;
     }
     .hero-badge { margin: 0 auto 16px; }
     .hero-title {
@@ -993,11 +997,11 @@ footer {
         padding: 8px 14px;
         border-radius: 999px;
     }
-    .tag-1 { top: -10px; left: 5%; }
-    .tag-2 { top: 15%; right: -5%; }
-    .tag-3 { bottom: 20%; left: -5%; }
-    .tag-4 { bottom: 10%; right: 5%; }
-    .tag-5 { bottom: -15px; left: 35%; }
+    .tag-1 { top: -10px; left: 5%; bottom: auto; right: auto; }
+    .tag-2 { top: 15%; right: -5%; bottom: auto; left: auto; }
+    .tag-3 { bottom: 20%; left: -5%; top: auto; right: auto; }
+    .tag-4 { bottom: 10%; right: 5%; top: auto; left: auto; }
+    .tag-5 { bottom: -15px; left: 35%; top: auto; right: auto; }
 
     /* About Section */
     #about { padding-inline: 24px; }
@@ -1020,7 +1024,7 @@ footer {
         flex-direction: column;
         padding-inline: 24px;
         max-width: 720px;
-        margin: 0 auto 80px;
+        margin: 0 auto 48px;
         gap: 0;
     }
     .project-content {
@@ -1057,6 +1061,12 @@ footer {
         aspect-ratio: 16/10;
         height: auto;
         margin-bottom: 22px;
+    }
+    .project-card:nth-child(even) .project-visual {
+        order: 4;
+    }
+    .project-card:nth-child(even) .project-content {
+        order: unset;
     }
     .project-desc {
         order: 5;
@@ -1140,9 +1150,12 @@ footer {
     }
 
     /* Misc */
+    section {
+        padding: 4rem 0;
+    }
     .section-title {
         font-size: clamp(28px, 8vw, 36px);
-        margin-bottom: 40px;
+        margin-bottom: 24px;
         text-align: center;
     }
     .cursor-glow { display: none; }
