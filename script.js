@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
     }
 
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (hamburger.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('open');
+                document.body.style.overflow = '';
             }
         });
     });
