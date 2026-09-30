@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bao Trung | Software Engineer Intern</title>
+    <meta name="description" content="Portfolio of Nguyễn Đức Bảo Trung, a Software Engineer Intern specializing in C++, C# .NET, and Web Development.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cinematic SVG Aurora System -->
+    <div class="aurora-system">
+        <svg class="aurora-svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="grad-crimson" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#5A0A0A" stop-opacity="0" />
+                    <stop offset="40%" stop-color="#8E1414" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#5A0A0A" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="grad-red" x1="10%" y1="100%" x2="90%" y2="0%">
+                    <stop offset="0%" stop-color="#5A0A0A" stop-opacity="0" />
+                    <stop offset="30%" stop-color="#C62828" stop-opacity="0.8" />
+                    <stop offset="70%" stop-color="#E8481A" stop-opacity="0.4" />
+                    <stop offset="100%" stop-color="#E8481A" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="grad-orange" x1="20%" y1="100%" x2="100%" y2="20%">
+                    <stop offset="0%" stop-color="#C62828" stop-opacity="0" />
+                    <stop offset="40%" stop-color="#E8481A" stop-opacity="0.9" />
+                    <stop offset="70%" stop-color="#FF8A3D" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#FF8A3D" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+
+            <!-- GROUP 1: Background Crimson -->
+            <g class="parallax-group p-back">
+                <g class="aurora-group back-layer">
+                    <path class="ribbon-blur-huge" stroke="url(#grad-crimson)" fill="none" stroke-width="260" stroke-linecap="round">
+                        <animate attributeName="d" 
+                            values="M -100, 1200 C 400, 1000 800, 300 1800, -200;
+                                    M -50, 1100 C 500, 1100 700, 200 1900, -100;
+                                    M -100, 1200 C 400, 1000 800, 300 1800, -200" 
+                            dur="49s" repeatCount="indefinite" />
+                    </path>
+                </g>
+            </g>
+
+            <!-- GROUP 2: Middle Red/Orange -->
+            <g class="parallax-group p-mid">
+                <g class="aurora-group mid-layer">
+                    <path class="ribbon-blur-large" stroke="url(#grad-red)" fill="none" stroke-width="180" stroke-linecap="round">
+                        <animate attributeName="d" 
+                            values="M 200, 1300 C 700, 900 1000, 400 1700, 0;
+                                    M 100, 1400 C 600, 800 900, 500 1800, 100;
+                                    M 200, 1300 C 700, 900 1000, 400 1700, 0" 
+                            dur="56s" repeatCount="indefinite" />
+                    </path>
+                    <path class="ribbon-blur-med" stroke="url(#grad-red)" fill="none" stroke-width="90" stroke-linecap="round">
+                        <animate attributeName="d" 
+                            values="M 200, 1300 C 700, 900 1000, 400 1700, 0;
+                                    M 100, 1400 C 600, 800 900, 500 1800, 100;
+                                    M 200, 1300 C 700, 900 1000, 400 1700, 0" 
+                            dur="56s" repeatCount="indefinite" />
+                    </path>
+                </g>
+            </g>
+
+            <!-- GROUP 3: Main Orange/Red Highlights -->
+            <g class="parallax-group p-main">
+                <g class="aurora-group main-layer">
+                    <path class="ribbon-blur-large" stroke="url(#grad-orange)" fill="none" stroke-width="120" stroke-linecap="round">
+                        <animate attributeName="d" 
+                            values="M 500, 1200 C 900, 800 1100, 300 1600, -100;
+                                    M 400, 1100 C 1000, 900 1200, 200 1700, 0;
+                                    M 500, 1200 C 900, 800 1100, 300 1600, -100" 
+                            dur="43s" repeatCount="indefinite" />
+                    </path>
+                    <path class="ribbon-blur-small" stroke="url(#grad-orange)" fill="none" stroke-width="50" stroke-linecap="round">
+                        <animate attributeName="d" 
+                            values="M 500, 1200 C 900, 800 1100, 300 1600, -100;
+                                    M 400, 1100 C 1000, 900 1200, 200 1700, 0;
+                                    M 500, 1200 C 900, 800 1100, 300 1600, -100" 
+                            dur="43s" repeatCount="indefinite" />
+                    </path>
+                </g>
+            </g>
+
+            <!-- GROUP 4: Front Bright Orange -->
+            <g class="parallax-group p-front">
+                <g class="aurora-group front-layer">
+                    <path class="ribbon-blur-med" stroke="url(#grad-orange)" fill="none" stroke-width="60" stroke-linecap="round">
+                        <animate attributeName="d" 
+                            values="M 900, 1200 C 1100, 900 1300, 600 1800, 300;
+                                    M 800, 1300 C 1200, 1000 1400, 500 1900, 200;
+                                    M 900, 1200 C 1100, 900 1300, 600 1800, 300" 
+                            dur="34s" repeatCount="indefinite" />
+                    </path>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="nav-content">
+            <div class="nav-brand">NGUYEN DUC BAO TRUNG</div>
+            <button class="hamburger-menu" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">ABOUT</a>
+                <a href="#experience" class="nav-link">EXPERIENCE</a>
+                <a href="#education" class="nav-link">EDUCATION</a>
+                <a href="#skills" class="nav-link">SKILLS</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content reveal active">
+                <div class="hero-text">
+                    <div class="hero-badge">AVAILABLE FOR INTERNSHIP</div>
+                    <h1 class="hero-title">Software Engineer Intern</h1>
+                    <h2 class="hero-subtitle">C++ / C# .NET & Web Development</h2>
+                    <p class="hero-desc">Second-year Software Engineering student at the University of Information Technology (VNU-HCM), with a strong foundation in C++, C#, SQL, Data Structures & Algorithms, and Object-Oriented Programming.</p>
+                    <p class="hero-desc">Building practical software through desktop applications, real-time web platforms, algorithmic systems, and collaborative engineering projects.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#experience" class="btn btn-primary">VIEW MY WORK</a>
+                        <a href="#contact" class="btn btn-secondary">CONTACT ME</a>
+                    </div>
+                </div>
+                <div class="hero-visual tilt-card">
+                    <div class="glass-portrait">
+                        <div class="abstract-orb"></div>
+                        <svg class="code-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <div class="floating-tag tag-1">C++</div>
+                    <div class="floating-tag tag-2">C#</div>
+                    <div class="floating-tag tag-3">React</div>
+                    <div class="floating-tag tag-4">SQL</div>
+                    <div class="floating-tag tag-5">.NET</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="reveal">
+            <h2 class="section-title">ABOUT ME</h2>
+            <div class="about-grid">
+                <div>
+                    <h3 class="about-heading">Building software with logic, structure and purpose.</h3>
+                    <div class="about-text">
+                        <p>Hello, I'm Nguyễn Đức Bảo Trung, a second-year Software Engineering student at the University of Information Technology (VNU-HCM), currently pursuing a Bachelor of Software Engineering.</p>
+                        <p>With a GPA of 8.47/10, I have cultivated a strong foundation in C++, C#, SQL, Object-Oriented Programming (OOP), Data Structures & Algorithms, and Web Development.</p>
+                        <p>Throughout my academic journey, I have worked on diverse systems ranging from WPF desktop applications and SQL Server database systems to React web applications, Firebase real-time systems, and C++ simulation systems.</p>
+                        <p>Beyond coding, I have led academic project teams of 4–16 members, coordinated task distribution, managed milestones, reviewed deliverables, and worked extensively with Git/GitHub workflows to ensure successful project execution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="reveal">
+            <h2 class="section-title">EXPERIENCE</h2>
+            
+            <!-- Project 1 -->
+            <div class="project-card reveal">
+                <div class="project-visual tilt-card">
+                    <div class="visual-placeholder">
+                        <div class="app-mockup">
+                            <div class="app-header"></div>
+                            <div class="app-body">
+                                <div class="app-sidebar"></div>
+                                <div class="app-content">
+                                    <div class="app-card"></div>
+                                    <div class="app-card" style="opacity: 0.5;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-num">01</div>
+                    <h3 class="project-title">HOTEL & HOMESTAY MANAGEMENT SYSTEM</h3>
+                    <div class="project-role-date">
+                        <span>Team Leader & Developer</span>
+                        <span>Sep 2026 – Present</span>
+                    </div>
+                    <p class="project-desc">Led the development of a multi-layered WPF desktop application for room reservation, check-in/check-out, service billing, and revenue reporting.</p>
+                    <ul class="project-highlights">
+                        <li>Designed a normalized relational database schema</li>
+                        <li>Implemented data access logic</li>
+                        <li>Managed room availability and customer records</li>
+                        <li>Implemented invoice generation</li>
+                        <li>Structured the system into UI, Business Logic, and Data Access layers</li>
+                        <li>Managed task distribution and Git/GitHub workflow</li>
+                    </ul>
+                    <div class="tech-chips">
+                        <span class="chip">C#</span>
+                        <span class="chip">.NET</span>
+                        <span class="chip">WPF</span>
+                        <span class="chip">SQL Server</span>
+                        <span class="chip">OOP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card reveal">
+                <div class="project-visual tilt-card">
+                    <div class="visual-placeholder">
+                        <div class="app-mockup">
+                            <div class="browser-header">
+                                <div style="display:flex;gap:6px;">
+                                    <div style="width:10px;height:10px;border-radius:50%;background:#ff5f56;"></div>
+                                    <div style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;"></div>
+                                    <div style="width:10px;height:10px;border-radius:50%;background:#27c93f;"></div>
+                                </div>
+                                <div class="browser-url"></div>
+                            </div>
+                            <div class="app-body" style="flex-direction:column; padding:15px; gap:15px;">
+                                <div style="height:35%; background:var(--glass-border); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-orange); opacity: 0.3;"></div>
+                                </div>
+                                <div style="display:flex; gap:15px; flex:1;">
+                                    <div style="flex:2; background:var(--glass-border); border-radius:6px;"></div>
+                                    <div style="flex:1; background:var(--glass-border); border-radius:6px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-num">02</div>
+                    <h3 class="project-title">MIDAS – INTERACTIVE EDUCATIONAL WEB & REAL-TIME QUIZ PLATFORM</h3>
+                    <div class="project-role-date">
+                        <span>Team Leader & Sole Web Developer</span>
+                        <span>Sep 2026</span>
+                    </div>
+                    <p class="project-desc">Delivered an interactive educational platform in 6 days featuring a 13-page digital eBook and a 20-question timed quiz.</p>
+                    <ul class="project-highlights">
+                        <li>Built the frontend architecture with React 18 and TypeScript</li>
+                        <li>Implemented React Router and used Framer Motion for interactions</li>
+                        <li>Built real-time leaderboard functionality</li>
+                        <li>Integrated Firebase and used LocalStorage</li>
+                        <li>Designed the platform for mobile users</li>
+                        <li>Coordinated a 16-member cross-functional team</li>
+                        <li>Managed timelines and quality checkpoints</li>
+                    </ul>
+                    <div class="tech-chips">
+                        <span class="chip">React 18</span>
+                        <span class="chip">TypeScript</span>
+                        <span class="chip">Vite</span>
+                        <span class="chip">Tailwind CSS</span>
+                        <span class="chip">Firebase</span>
+                        <span class="chip">Vercel</span>
+                        <span class="chip">Framer Motion</span>
+                    </div>
+                    <a href="https://github.com/Btrung-uit/KTCT-web-project" class="btn-icon" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card reveal">
+                <div class="project-visual tilt-card">
+                    <div class="visual-placeholder">
+                        <div class="app-mockup">
+                            <div class="app-header"></div>
+                            <div class="app-body" style="padding: 20px; flex-direction: column; gap: 12px; font-family: monospace;">
+                                <div style="width: 40%; height: 10px; background: var(--accent-orange); border-radius: 4px; opacity: 0.9;"></div>
+                                <div style="width: 70%; height: 8px; background: var(--glass-border); border-radius: 4px;"></div>
+                                <div style="width: 85%; height: 8px; background: var(--glass-border); border-radius: 4px;"></div>
+                                <div style="width: 35%; height: 10px; background: var(--accent-red); border-radius: 4px; opacity: 0.9; margin-top: 15px;"></div>
+                                <div style="width: 60%; height: 8px; background: var(--glass-border); border-radius: 4px;"></div>
+                                <div style="width: 50%; height: 8px; background: var(--glass-border); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-num">03</div>
+                    <h3 class="project-title">MONTE CARLO PROBABILITY & BETTING STRATEGY SIMULATOR</h3>
+                    <div class="project-role-date">
+                        <span>Team Leader & Core Developer</span>
+                        <span>Apr 2026</span>
+                    </div>
+                    <p class="project-desc">Engineered a C++ simulation system to evaluate three betting strategies using probability and statistical modeling.</p>
+                    <ul class="project-highlights">
+                        <li>Martingale, Fibonacci, and Paroli strategies</li>
+                        <li>Designed Player, House, Table and Dice entities</li>
+                        <li>Applied encapsulation, inheritance, and polymorphism</li>
+                        <li>Implemented Strategy Design Pattern</li>
+                        <li>Analyzed win-rate distributions and bankroll volatility</li>
+                        <li>Analyzed risk-of-ruin metrics</li>
+                    </ul>
+                    <div class="tech-chips">
+                        <span class="chip">C++</span>
+                        <span class="chip">OOP</span>
+                        <span class="chip">Design Patterns</span>
+                        <span class="chip">Algorithm Analysis</span>
+                    </div>
+                    <a href="https://github.com/Btrung-uit/IT002.Q26-Group5-TaiXiu" class="btn-icon" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="reveal">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="edu-card tilt-card">
+                <div class="edu-header">
+                    <div>
+                        <h3 class="edu-uni">UNIVERSITY OF INFORMATION TECHNOLOGY (VNU-HCM)</h3>
+                        <div class="edu-degree">Bachelor of Software Engineering</div>
+                    </div>
+                    <div class="edu-meta">
+                        <div>2025 – 2029 (Expected)</div>
+                        <div>Ho Chi Minh City, Vietnam</div>
+                    </div>
+                </div>
+                
+                <div class="edu-gpa">
+                    GPA: <span>8.47 / 10.0</span> <span style="margin: 0 10px; color: var(--text-secondary);">|</span> Classification: Good
+                </div>
+                
+                <div class="edu-coursework">
+                    <h4>Relevant Coursework:</h4>
+                    <ul class="course-list">
+                        <li>Data Structures & Algorithms</li>
+                        <li>Object-Oriented Programming</li>
+                        <li>Database Systems</li>
+                        <li>Visual Programming (.NET/WPF)</li>
+                        <li>Operating Systems</li>
+                        <li>Discrete Mathematics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
+            <h2 class="section-title">TECHNICAL SKILLS</h2>
+            <div class="skills-grid">
+                <div class="skill-category reveal" style="transition-delay: 0.1s;">
+                    <h3>LANGUAGES</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal" style="transition-delay: 0.2s;">
+                    <h3>FRAMEWORKS & LIBRARIES</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">.NET</span>
+                        <span class="skill-tag">WPF</span>
+                        <span class="skill-tag">React 18</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Framer Motion</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal" style="transition-delay: 0.3s;">
+                    <h3>DATABASES & CLOUD</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Microsoft SQL Server</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Realtime Database</span>
+                        <span class="skill-tag">Firestore</span>
+                        <span class="skill-tag">Vercel</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal" style="transition-delay: 0.4s;">
+                    <h3>CONCEPTS</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Data Structures & Algorithms</span>
+                        <span class="skill-tag">Object-Oriented Programming</span>
+                        <span class="skill-tag">Design Patterns</span>
+                        <span class="skill-tag">Strategy Pattern</span>
+                        <span class="skill-tag">3-Layer Architecture</span>
+                        <span class="skill-tag">MVVM</span>
+                        <span class="skill-tag">Relational Database Design</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal" style="transition-delay: 0.5s;">
+                    <h3>TOOLS</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Visual Studio</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">SQL Server Management Studio</span>
+                        <span class="skill-tag">Linux Ubuntu</span>
+                        <span class="skill-tag">AI-Assisted Development</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal" style="transition-delay: 0.6s;">
+                    <h3>LANGUAGES</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Vietnamese (Native)</span>
+                        <span class="skill-tag">English (B1–B2)</span>
+                        <span class="skill-tag" style="border-color:transparent; background:transparent; padding:0; padding-top:0.5rem;">Technical reading & communication</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Section -->
+        <section id="leadership" class="reveal">
+            <h2 class="section-title" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">LEADERSHIP & ACTIVITIES</h2>
+            <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                <div class="leadership-card tilt-card">
+                    <h3>Academic Project Team Leader</h3>
+                    <p>Led teams of 4–16 members across academic projects in Object-Oriented Programming, Visual Programming and Political Economy by setting milestone-tracking spreadsheets, reviewing deliverables and managing GitHub repositories.</p>
+                </div>
+                <div class="leadership-card tilt-card">
+                    <h3>Community Involvement</h3>
+                    <p>Participated in a university blood donation campaign in May 2026 and academic quiz competitions at VNU-HCM.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal" style="padding-bottom: 6rem;">
+            <div style="text-align:center; margin-bottom: 3rem;">
+                <h2 class="section-title" style="margin-bottom:1rem;">LET'S BUILD SOMETHING</h2>
+                <p class="hero-subtitle" style="font-size:1.1rem; max-width: 600px; margin: 0 auto;">Open to Software Engineer Internship opportunities and collaborative software projects.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="mailto:baotrung2k7@gmail.com" class="contact-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
+                    </svg>
+                    <div>
+                        <div class="contact-label">EMAIL</div>
+                        <div class="contact-value">baotrung2k7@gmail.com</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/baotrung2k7" class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <div>
+                        <div class="contact-label">LINKEDIN</div>
+                        <div class="contact-value">/in/baotrung2k7</div>
+                    </div>
+                </a>
+                <a href="https://github.com/Btrung-uit" class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <div>
+                        <div class="contact-label">GITHUB</div>
+                        <div class="contact-value">Btrung-uit</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Nguyễn Đức Bảo Trung. Built with HTML, CSS & JavaScript.</p>
+        <div class="footer-links">
+            <a href="https://github.com/Btrung-uit" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/baotrung2k7" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:baotrung2k7@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
