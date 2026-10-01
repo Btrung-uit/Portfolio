@@ -28,76 +28,65 @@ body {
 * { box-sizing: border-box; }
 h1, h2, h3, h4, p { margin-top: 0; }
 
-/* --- Cinematic SVG Aurora System --- */
-.aurora-system {
+/* --- New Performance-First Cinematic Background System --- */
+.bg-system {
     position: fixed;
     inset: 0;
     z-index: -3;
-    overflow: hidden;
     background-color: #030303;
+    overflow: hidden;
     pointer-events: none;
 }
 
-.aurora-svg {
+.bg-atmosphere {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    /* Static atmospheric gradients creating depth */
+    background: 
+        radial-gradient(circle at 10% 90%, rgba(90, 10, 10, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(198, 40, 40, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(232, 72, 26, 0.08) 0%, transparent 60%);
+}
+
+.bg-artwork {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    /* Hardware accelerated transform property for optional subtle mouse interaction */
+    will-change: transform;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.static-aurora {
     width: 100vw;
     height: 100vh;
-    will-change: transform;
-    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%);
-    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 100%);
+    display: block;
 }
 
-.parallax-group {
-    will-change: transform;
+.bg-animated-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 80vh;
+    z-index: 3;
+    background: radial-gradient(ellipse at center, rgba(255, 138, 61, 0.06) 0%, transparent 60%);
+    transform-origin: center right;
+    animation: ambient-breathe 45s infinite alternate ease-in-out;
 }
 
-.aurora-group {
-    will-change: transform;
+@keyframes ambient-breathe {
+    0% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 0.7; }
+    50% { transform: scale(1.05) translate(-2%, 2%) rotate(-2deg); opacity: 1; }
+    100% { transform: scale(1.1) translate(2%, -2%) rotate(2deg); opacity: 0.8; }
 }
 
-/* Base continuous drifting animations (on top of SMIL morphs) */
-.back-layer { animation: drift-1 49s infinite alternate ease-in-out; opacity: 0.25; mix-blend-mode: normal; }
-.mid-layer { animation: drift-2 56s infinite alternate ease-in-out; opacity: 0.3; mix-blend-mode: normal; }
-.main-layer { animation: drift-3 43s infinite alternate ease-in-out; opacity: 0.28; mix-blend-mode: screen; }
-.front-layer { animation: drift-4 38s infinite alternate ease-in-out; opacity: 0.2; mix-blend-mode: normal; }
-
-@keyframes drift-1 {
-    0% { transform: translate(-3%, 2%) scale(1.05) rotate(1deg); }
-    100% { transform: translate(2%, -3%) scale(1) rotate(-1deg); }
-}
-@keyframes drift-2 {
-    0% { transform: translate(2%, -4%) scale(1) rotate(-2deg); }
-    100% { transform: translate(-4%, 3%) scale(1.08) rotate(1deg); }
-}
-@keyframes drift-3 {
-    0% { transform: translate(-5%, 0%) scale(1.05) rotate(0deg); }
-    100% { transform: translate(3%, 4%) scale(1) rotate(-3deg); }
-}
-@keyframes drift-4 {
-    0% { transform: translate(4%, 3%) scale(1) rotate(-1deg); }
-    100% { transform: translate(-2%, -5%) scale(1.1) rotate(2deg); }
-}
-
-/* Blur Classes for SVG Paths - Optimized */
-.ribbon-blur-huge { filter: blur(40px); }
-.ribbon-blur-large { filter: blur(25px); }
-.ribbon-blur-med { filter: blur(15px); }
-.ribbon-blur-small { filter: blur(8px); }
-
-/* --- Noise & Vignette Overlays --- */
-.noise-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -2;
-    pointer-events: none;
-    /* Procedural SVG noise removed for performance */
-    display: none;
-}
-.vignette-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.65) 100%);
+.bg-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(3, 3, 3, 0.85) 100%);
 }
 
 /* Custom Cursor Glow */
@@ -1186,20 +1175,13 @@ footer {
 
 /* --- Mobile Performance Optimizations --- */
 @media (max-width: 768px) {
-    /* Reduce layer count */
-    .back-layer, .front-layer {
+    /* Disable animated glow entirely on mobile for battery and performance */
+    .bg-animated-glow {
         display: none;
     }
     
-    /* Reduce blur radius further for mobile GPUs */
-    .ribbon-blur-huge { filter: blur(20px); }
-    .ribbon-blur-large { filter: blur(15px); }
-    .ribbon-blur-med { filter: blur(10px); }
-    .ribbon-blur-small { filter: blur(5px); }
-    
-    /* Simplify mask */
-    .aurora-svg {
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    /* Disable optional background mouse tracking */
+    .bg-artwork {
+        transform: none !important;
     }
 }

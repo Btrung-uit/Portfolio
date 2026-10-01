@@ -12,74 +12,76 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Cinematic SVG Aurora System -->
-    <div class="aurora-system">
-        <svg class="aurora-svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
-            <defs>
-                <linearGradient id="grad-crimson" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#5A0A0A" stop-opacity="0" />
-                    <stop offset="40%" stop-color="#8E1414" stop-opacity="0.8" />
-                    <stop offset="100%" stop-color="#5A0A0A" stop-opacity="0" />
-                </linearGradient>
-                <linearGradient id="grad-red" x1="10%" y1="100%" x2="90%" y2="0%">
-                    <stop offset="0%" stop-color="#5A0A0A" stop-opacity="0" />
-                    <stop offset="30%" stop-color="#C62828" stop-opacity="0.8" />
-                    <stop offset="70%" stop-color="#E8481A" stop-opacity="0.4" />
-                    <stop offset="100%" stop-color="#E8481A" stop-opacity="0" />
-                </linearGradient>
-                <linearGradient id="grad-orange" x1="20%" y1="100%" x2="100%" y2="20%">
-                    <stop offset="0%" stop-color="#C62828" stop-opacity="0" />
-                    <stop offset="40%" stop-color="#E8481A" stop-opacity="0.9" />
-                    <stop offset="70%" stop-color="#FF8A3D" stop-opacity="0.6" />
-                    <stop offset="100%" stop-color="#FF8A3D" stop-opacity="0" />
-                </linearGradient>
-            </defs>
+    <!-- New Performance-First Cinematic Background -->
+    <div class="bg-system" id="bg-system">
+        <!-- Layer 2: Static Atmospheric Gradients (Layer 1 is CSS background-color) -->
+        <div class="bg-atmosphere"></div>
+        
+        <!-- Layer 3: Static Aurora/Light-Ribbon Artwork -->
+        <div class="bg-artwork">
+            <svg class="static-aurora" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Deep crimson & red glows -->
+                    <radialGradient id="glow-crimson" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#8E1414" stop-opacity="0.25" />
+                        <stop offset="50%" stop-color="#5A0A0A" stop-opacity="0.1" />
+                        <stop offset="100%" stop-color="#030303" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="glow-orange" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#E8481A" stop-opacity="0.2" />
+                        <stop offset="50%" stop-color="#8E1414" stop-opacity="0.08" />
+                        <stop offset="100%" stop-color="#030303" stop-opacity="0" />
+                    </radialGradient>
+                    
+                    <!-- Ribbon Gradients -->
+                    <linearGradient id="ribbon-main" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#5A0A0A" stop-opacity="0" />
+                        <stop offset="30%" stop-color="#8E1414" stop-opacity="0.4" />
+                        <stop offset="65%" stop-color="#FF6A21" stop-opacity="0.6" />
+                        <stop offset="85%" stop-color="#FF8A3D" stop-opacity="0.3" />
+                        <stop offset="100%" stop-color="#E8481A" stop-opacity="0" />
+                    </linearGradient>
+                    
+                    <linearGradient id="ribbon-sec" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#5A0A0A" stop-opacity="0" />
+                        <stop offset="40%" stop-color="#C62828" stop-opacity="0.3" />
+                        <stop offset="80%" stop-color="#FF8A3D" stop-opacity="0.5" />
+                        <stop offset="100%" stop-color="#FF6A21" stop-opacity="0" />
+                    </linearGradient>
+                </defs>
 
-            <!-- GROUP 1: Background Crimson -->
-            <g class="parallax-group p-back">
-                <g class="aurora-group back-layer">
-                    <path class="ribbon-blur-huge" stroke="url(#grad-crimson)" fill="none" stroke-width="260" stroke-linecap="round">
-                        
-                    </path>
-                </g>
-            </g>
+                <!-- Atmospheric Light Pools (Focused on right side) -->
+                <!-- Upper Right -->
+                <ellipse cx="1200" cy="200" rx="700" ry="500" fill="url(#glow-orange)" transform="rotate(-15 1200 200)" />
+                <!-- Center Right -->
+                <ellipse cx="1400" cy="600" rx="800" ry="600" fill="url(#glow-crimson)" transform="rotate(20 1400 600)" />
+                <!-- Lower Right -->
+                <ellipse cx="1000" cy="900" rx="600" ry="400" fill="url(#glow-orange)" transform="rotate(-10 1000 900)" />
 
-            <!-- GROUP 2: Middle Red/Orange -->
-            <g class="parallax-group p-mid">
-                <g class="aurora-group mid-layer">
-                    <path class="ribbon-blur-large" stroke="url(#grad-red)" fill="none" stroke-width="180" stroke-linecap="round">
-                        
-                    </path>
-                    <path class="ribbon-blur-med" stroke="url(#grad-red)" fill="none" stroke-width="90" stroke-linecap="round">
-                        
-                    </path>
+                <!-- Static Flowing Silk/Ribbon (Onion-skinned to simulate softness without blur) -->
+                <!-- Main sweeping ribbon -->
+                <g class="silk-ribbon">
+                    <path d="M 400 1200 C 700 800, 900 400, 1400 200 C 1600 100, 1800 50, 1900 -100" fill="none" stroke="url(#ribbon-main)" stroke-width="180" stroke-linecap="round" opacity="0.15" />
+                    <path d="M 400 1200 C 700 800, 900 400, 1400 200 C 1600 100, 1800 50, 1900 -100" fill="none" stroke="url(#ribbon-main)" stroke-width="100" stroke-linecap="round" opacity="0.25" />
+                    <path d="M 400 1200 C 700 800, 900 400, 1400 200 C 1600 100, 1800 50, 1900 -100" fill="none" stroke="url(#ribbon-main)" stroke-width="40" stroke-linecap="round" opacity="0.4" />
+                    <path d="M 400 1200 C 700 800, 900 400, 1400 200 C 1600 100, 1800 50, 1900 -100" fill="none" stroke="#FF8A3D" stroke-width="4" stroke-linecap="round" opacity="0.2" />
                 </g>
-            </g>
 
-            <!-- GROUP 3: Main Orange/Red Highlights -->
-            <g class="parallax-group p-main">
-                <g class="aurora-group main-layer">
-                    <path class="ribbon-blur-large" stroke="url(#grad-orange)" fill="none" stroke-width="120" stroke-linecap="round">
-                        
-                    </path>
-                    <path class="ribbon-blur-small" stroke="url(#grad-orange)" fill="none" stroke-width="50" stroke-linecap="round">
-                        
-                    </path>
+                <!-- Secondary intersecting ribbon -->
+                <g class="silk-ribbon-secondary">
+                    <path d="M 600 1100 C 900 900, 1200 650, 1500 700 C 1700 730, 1800 600, 1900 500" fill="none" stroke="url(#ribbon-sec)" stroke-width="140" stroke-linecap="round" opacity="0.1" />
+                    <path d="M 600 1100 C 900 900, 1200 650, 1500 700 C 1700 730, 1800 600, 1900 500" fill="none" stroke="url(#ribbon-sec)" stroke-width="70" stroke-linecap="round" opacity="0.2" />
+                    <path d="M 600 1100 C 900 900, 1200 650, 1500 700 C 1700 730, 1800 600, 1900 500" fill="none" stroke="url(#ribbon-sec)" stroke-width="25" stroke-linecap="round" opacity="0.35" />
                 </g>
-            </g>
-
-            <!-- GROUP 4: Front Bright Orange -->
-            <g class="parallax-group p-front">
-                <g class="aurora-group front-layer">
-                    <path class="ribbon-blur-med" stroke="url(#grad-orange)" fill="none" stroke-width="60" stroke-linecap="round">
-                        
-                    </path>
-                </g>
-            </g>
-        </svg>
+            </svg>
+        </div>
+        
+        <!-- Layer 4: ONE extremely lightweight animated ambient glow -->
+        <div class="bg-animated-glow"></div>
+        
+        <!-- Layer 5: Static Vignette -->
+        <div class="bg-vignette"></div>
     </div>
-    <div class="noise-overlay"></div>
-    <div class="vignette-overlay"></div>
 
     <!-- Custom Cursor Glow -->
     <div class="cursor-glow"></div>

@@ -123,82 +123,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Cinematic SVG Aurora Parallax & Mouse Interaction ---
-    const parallaxLayers = [
-        { el: document.querySelector('.p-back'), scrollFactorY: -0.015, scrollFactorX: -0.005, mouseFactor: -0.005 },
-        { el: document.querySelector('.p-mid'), scrollFactorY: -0.035, scrollFactorX: -0.010, mouseFactor: -0.010 },
-        { el: document.querySelector('.p-main'), scrollFactorY: -0.060, scrollFactorX: -0.015, mouseFactor: -0.015 },
-        { el: document.querySelector('.p-front'), scrollFactorY: -0.090, scrollFactorX: -0.020, mouseFactor: -0.020 }
-    ];
-
-    let currentScroll = window.scrollY;
-    let targetScroll = window.scrollY;
-    let targetMouseX = 0, targetMouseY = 0;
-    let currentMouseX = 0, currentMouseY = 0;
-    let windowHalfX = window.innerWidth / 2;
-    let windowHalfY = window.innerHeight / 2;
-    let animationRunning = false;
-    const EPSILON = 0.5;
-
-    window.addEventListener('resize', () => {
-        windowHalfX = window.innerWidth / 2;
-        windowHalfY = window.innerHeight / 2;
-    }, { passive: true });
-
-    if (isDesktop) {
+    // --- Optional Subtle Background Micro-interaction (Desktop Only) ---
+    const bgArtwork = document.querySelector('.bg-artwork');
+    let bgRAF = null;
+    
+    if (bgArtwork && isDesktop && !prefersReducedMotion) {
         document.addEventListener('mousemove', (e) => {
-            targetMouseX = e.clientX - windowHalfX;
-            targetMouseY = e.clientY - windowHalfY;
-            startParallax();
-        }, { passive: true });
-    }
-
-    function renderParallax() {
-        if (prefersReducedMotion) return;
-        
-        let needsUpdate = false;
-
-        // Scroll lerp
-        if (Math.abs(targetScroll - currentScroll) > EPSILON) {
-            currentScroll += (targetScroll - currentScroll) * 0.04;
-            needsUpdate = true;
-        } else {
-            currentScroll = targetScroll;
-        }
-        
-        // Mouse lerp
-        if (isDesktop) {
-            if (Math.abs(targetMouseX - currentMouseX) > EPSILON || Math.abs(targetMouseY - currentMouseY) > EPSILON) {
-                currentMouseX += (targetMouseX - currentMouseX) * 0.05;
-                currentMouseY += (targetMouseY - currentMouseY) * 0.05;
-                needsUpdate = true;
-            } else {
-                currentMouseX = targetMouseX;
-                currentMouseY = targetMouseY;
+            if (!bgRAF) {
+                bgRAF = window.requestAnimationFrame(() => {
+                    // Maximum movement of 5px for extreme subtlety and performance
+                    const x = (e.clientX / window.innerWidth - 0.5) * 10; 
+                    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+                    
+                    bgArtwork.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                    bgRAF = null;
+                });
             }
-        }
-
-        if (needsUpdate) {
-            parallaxLayers.forEach(layer => {
-                if (layer.el) {
-                    const yOffset = currentScroll * layer.scrollFactorY;
-                    const xOffset = currentScroll * layer.scrollFactorX;
-                    const mouseXOffset = currentMouseX * layer.mouseFactor;
-                    const mouseYOffset = currentMouseY * layer.mouseFactor;
-                    layer.el.style.transform = `translate3d(${xOffset + mouseXOffset}px, ${yOffset + mouseYOffset}px, 0)`;
-                }
-            });
-            requestAnimationFrame(renderParallax);
-        } else {
-            animationRunning = false;
-        }
-    }
-
-    function startParallax() {
-        if (!animationRunning && !prefersReducedMotion) {
-            animationRunning = true;
-            requestAnimationFrame(renderParallax);
-        }
+        }, { passive: true });
     }
 
     // --- Unified Scroll Handler ---
@@ -206,8 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let isScrollTicking = false;
 
     window.addEventListener('scroll', () => {
-        targetScroll = window.scrollY;
-        
         if (!isScrollTicking) {
             window.requestAnimationFrame(() => {
                 // Navbar Update
@@ -220,13 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             isScrollTicking = true;
         }
-
-        startParallax();
     }, { passive: true });
-
-    // Initial trigger
-    if (!prefersReducedMotion) {
-        startParallax();
-    }
 
 });
