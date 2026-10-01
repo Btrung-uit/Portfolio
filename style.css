@@ -55,10 +55,10 @@ h1, h2, h3, h4, p { margin-top: 0; }
 }
 
 /* Base continuous drifting animations (on top of SMIL morphs) */
-.back-layer { animation: drift-1 49s infinite alternate ease-in-out; opacity: 0.18; mix-blend-mode: screen; }
-.mid-layer { animation: drift-2 56s infinite alternate ease-in-out; opacity: 0.22; mix-blend-mode: screen; }
+.back-layer { animation: drift-1 49s infinite alternate ease-in-out; opacity: 0.25; mix-blend-mode: normal; }
+.mid-layer { animation: drift-2 56s infinite alternate ease-in-out; opacity: 0.3; mix-blend-mode: normal; }
 .main-layer { animation: drift-3 43s infinite alternate ease-in-out; opacity: 0.28; mix-blend-mode: screen; }
-.front-layer { animation: drift-4 38s infinite alternate ease-in-out; opacity: 0.14; mix-blend-mode: screen; }
+.front-layer { animation: drift-4 38s infinite alternate ease-in-out; opacity: 0.2; mix-blend-mode: normal; }
 
 @keyframes drift-1 {
     0% { transform: translate(-3%, 2%) scale(1.05) rotate(1deg); }
@@ -77,11 +77,11 @@ h1, h2, h3, h4, p { margin-top: 0; }
     100% { transform: translate(-2%, -5%) scale(1.1) rotate(2deg); }
 }
 
-/* Blur Classes for SVG Paths */
-.ribbon-blur-huge { filter: blur(100px); }
-.ribbon-blur-large { filter: blur(60px); }
-.ribbon-blur-med { filter: blur(25px); }
-.ribbon-blur-small { filter: blur(10px); }
+/* Blur Classes for SVG Paths - Optimized */
+.ribbon-blur-huge { filter: blur(40px); }
+.ribbon-blur-large { filter: blur(25px); }
+.ribbon-blur-med { filter: blur(15px); }
+.ribbon-blur-small { filter: blur(8px); }
 
 /* --- Noise & Vignette Overlays --- */
 .noise-overlay {
@@ -89,8 +89,8 @@ h1, h2, h3, h4, p { margin-top: 0; }
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -2;
     pointer-events: none;
-    opacity: 0.02; /* extremely subtle film grain */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    /* Procedural SVG noise removed for performance */
+    display: none;
 }
 .vignette-overlay {
     position: fixed;
@@ -1181,5 +1181,25 @@ footer {
     }
     .aurora-svg {
         animation: none !important;
+    }
+}
+
+/* --- Mobile Performance Optimizations --- */
+@media (max-width: 768px) {
+    /* Reduce layer count */
+    .back-layer, .front-layer {
+        display: none;
+    }
+    
+    /* Reduce blur radius further for mobile GPUs */
+    .ribbon-blur-huge { filter: blur(20px); }
+    .ribbon-blur-large { filter: blur(15px); }
+    .ribbon-blur-med { filter: blur(10px); }
+    .ribbon-blur-small { filter: blur(5px); }
+    
+    /* Simplify mask */
+    .aurora-svg {
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
     }
 }

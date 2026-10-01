@@ -24,49 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-    // --- Navbar Scroll Effect ---
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-
-    // --- Active Navigation Link on Scroll ---
+    // --- Active Navigation Link using IntersectionObserver ---
     const sections = document.querySelectorAll('section[id]');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            // Subtract offset to trigger slightly before the section reaches the absolute top
-            if (window.scrollY >= (sectionTop - 250)) {
-                current = section.getAttribute('id');
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const current = entry.target.getAttribute('id');
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
+    }, { rootMargin: "-40% 0px -60% 0px" });
 
-        links.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-
+    sections.forEach(sec => navObserver.observe(sec));
 
     // --- Scroll Reveal Animation ---
     const revealElements = document.querySelectorAll('.reveal');
-    
-    const revealOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -74,42 +51,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target); // Only reveal once
             }
         });
-    }, revealOptions);
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-
-    // --- Parallax Aurora Background ---
-    // (Handled entirely by CSS for smoother vertical band animations)
-
+    // --- Check Device Type ---
+    const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // --- Custom Cursor Glow (Desktop Only) ---
     const cursor = document.querySelector('.cursor-glow');
-    
-    // Check if device supports hover (usually desktop)
-    const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    let cursorRAF = null;
+    let targetCursorX = 0, targetCursorY = 0;
 
     if (cursor && isDesktop) {
         document.addEventListener('mousemove', (e) => {
-            // Unhide cursor on first move
             if (cursor.style.top === '-1000px') {
                 cursor.style.top = '0px';
                 cursor.style.left = '0px';
             }
             
-            // Use requestAnimationFrame for smoother following
-            window.requestAnimationFrame(() => {
-                cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-            });
-        });
+            targetCursorX = e.clientX;
+            targetCursorY = e.clientY;
+
+            if (!cursorRAF) {
+                cursorRAF = window.requestAnimationFrame(() => {
+                    cursor.style.transform = `translate(calc(${targetCursorX}px - 50%), calc(${targetCursorY}px - 50%))`;
+                    cursorRAF = null;
+                });
+            }
+        }, { passive: true });
         
-        // Hide cursor when mouse leaves window
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-        });
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-        });
+        document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+        document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
     }
 
 
@@ -118,27 +92,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (isDesktop) {
         tiltCards.forEach(card => {
+            let rect;
+            card.addEventListener('mouseenter', () => {
+                rect = card.getBoundingClientRect();
+            });
+
             card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
+                if (!rect) rect = card.getBoundingClientRect(); // Fallback
+                
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                // Calculate rotation (max 5 degrees for subtlety)
                 const rotateX = ((y - centerY) / centerY) * -5;
                 const rotateY = ((x - centerX) / centerX) * 5;
 
                 window.requestAnimationFrame(() => {
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                 });
-            });
+            }, { passive: true });
 
             card.addEventListener('mouseleave', () => {
                 window.requestAnimationFrame(() => {
                     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                 });
+                rect = null; // Clear cache on leave
             });
         });
     }
@@ -153,60 +133,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentScroll = window.scrollY;
     let targetScroll = window.scrollY;
-    
-    let targetMouseX = 0;
-    let targetMouseY = 0;
-    let currentMouseX = 0;
-    let currentMouseY = 0;
-
+    let targetMouseX = 0, targetMouseY = 0;
+    let currentMouseX = 0, currentMouseY = 0;
     let windowHalfX = window.innerWidth / 2;
     let windowHalfY = window.innerHeight / 2;
+    let animationRunning = false;
+    const EPSILON = 0.5;
 
     window.addEventListener('resize', () => {
         windowHalfX = window.innerWidth / 2;
         windowHalfY = window.innerHeight / 2;
-    });
-
-    window.addEventListener('scroll', () => {
-        targetScroll = window.scrollY;
-    });
+    }, { passive: true });
 
     if (isDesktop) {
         document.addEventListener('mousemove', (e) => {
             targetMouseX = e.clientX - windowHalfX;
             targetMouseY = e.clientY - windowHalfY;
-        });
+            startParallax();
+        }, { passive: true });
     }
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     function renderParallax() {
-        if (!prefersReducedMotion) {
-            // Smooth inertia interpolation (lerp)
+        if (prefersReducedMotion) return;
+        
+        let needsUpdate = false;
+
+        // Scroll lerp
+        if (Math.abs(targetScroll - currentScroll) > EPSILON) {
             currentScroll += (targetScroll - currentScroll) * 0.04;
-            
-            if (isDesktop) {
+            needsUpdate = true;
+        } else {
+            currentScroll = targetScroll;
+        }
+        
+        // Mouse lerp
+        if (isDesktop) {
+            if (Math.abs(targetMouseX - currentMouseX) > EPSILON || Math.abs(targetMouseY - currentMouseY) > EPSILON) {
                 currentMouseX += (targetMouseX - currentMouseX) * 0.05;
                 currentMouseY += (targetMouseY - currentMouseY) * 0.05;
+                needsUpdate = true;
+            } else {
+                currentMouseX = targetMouseX;
+                currentMouseY = targetMouseY;
             }
+        }
 
+        if (needsUpdate) {
             parallaxLayers.forEach(layer => {
                 if (layer.el) {
                     const yOffset = currentScroll * layer.scrollFactorY;
                     const xOffset = currentScroll * layer.scrollFactorX;
                     const mouseXOffset = currentMouseX * layer.mouseFactor;
                     const mouseYOffset = currentMouseY * layer.mouseFactor;
-
                     layer.el.style.transform = `translate3d(${xOffset + mouseXOffset}px, ${yOffset + mouseYOffset}px, 0)`;
                 }
             });
+            requestAnimationFrame(renderParallax);
+        } else {
+            animationRunning = false;
+        }
+    }
 
+    function startParallax() {
+        if (!animationRunning && !prefersReducedMotion) {
+            animationRunning = true;
             requestAnimationFrame(renderParallax);
         }
     }
 
+    // --- Unified Scroll Handler ---
+    const navbar = document.querySelector('.navbar');
+    let isScrollTicking = false;
+
+    window.addEventListener('scroll', () => {
+        targetScroll = window.scrollY;
+        
+        if (!isScrollTicking) {
+            window.requestAnimationFrame(() => {
+                // Navbar Update
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                isScrollTicking = false;
+            });
+            isScrollTicking = true;
+        }
+
+        startParallax();
+    }, { passive: true });
+
+    // Initial trigger
     if (!prefersReducedMotion) {
-        renderParallax();
+        startParallax();
     }
 
 });
