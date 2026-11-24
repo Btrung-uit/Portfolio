@@ -1,37 +1,15 @@
-# Bao Trung - Software Engineer Portfolio
+# Bảo Trung — Developer Portfolio
 
-A personal portfolio website showcasing my skills, experience, and projects as a Software Engineer Intern. Designed with a focus on high performance, smooth animations, and a cinematic aesthetic.
+An English-language portfolio for Nguyễn Đức Bảo Trung, a Software Engineering student at UIT. It features .NET full-stack work and gives visitors direct links to personal contributions, source code, demos, and releases.
 
-## 🚀 Features
-- **Performance-First Cinematic Background**: A highly optimized, hardware-accelerated static aurora background that delivers premium visual depth without draining CPU/GPU resources (0 blur filters, 0 JS animation loops).
-- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices.
-- **Interactive UI**: Subtle micro-interactions, 3D tilt effects on project cards, and a custom cursor glow on desktop.
-- **Modern Tech Stack**: Built purely with HTML5, CSS3, and Vanilla JavaScript for maximum performance and zero dependencies.
+## Run locally
 
-## 🛠️ Technologies Used
-- HTML5
-- CSS3 (Custom Properties, Keyframe Animations, Flexbox/Grid, Media Queries)
-- Vanilla JavaScript (IntersectionObserver, requestAnimationFrame, Event Delegation)
+Open `index.html` in a browser or serve the repository root with a static server. The site uses HTML and CSS, with no build step or runtime dependencies.
 
-## 📂 Project Structure
-- `index.html` - The main structure of the portfolio.
-- `style.css` - All styling, including the cinematic background and mobile optimizations.
-- `script.js` - Lightweight interactivity, scroll handling, and subtle mouse tracking.
+## Image and font sources
 
-## ⚡ Getting Started
-This project requires no build tools or package managers. 
-Simply clone the repository and open `index.html` in your web browser.
-
-```bash
-# Clone the repository
-git clone <your-repo-url>
-
-# Open the project folder
-cd portfolio
-```
-Then double-click `index.html` or open it with an extension like Live Server in VS Code.
-
-## 👨‍💻 Author
-**Nguyễn Đức Bảo Trung**
-- Second-year Software Engineering student at the University of Information Technology (VNU-HCM).
-- Specializing in C++, C# .NET, and Web Development.
+- The portrait is the existing portfolio asset at `assets/images/avatar.jpg`.
+- The TeamPulse image is a crop of the [sample CampusEvent dashboard](https://github.com/Btrung-uit/TeamPulse/blob/b4642faa4f7bb93a74c14457ed9f4bcc9099217a/docs/screenshots/campusevent-dashboard.png).
+- The EasyToDoList image is a crop of the [Windows prerelease dashboard](https://github.com/Btrung-uit/EasyToDoList/blob/e69a553891283437cb258ddc553b644decdd794a/docs/screenshots/dashboard.png).
+- The Chạm Túy Loan image was captured from the [public site](https://btrung-uit.github.io/ChamTuyLoan/).
+- Bricolage Grotesque is self-hosted under the [SIL Open Font License](assets/fonts/OFL-Bricolage-Grotesque.txt).

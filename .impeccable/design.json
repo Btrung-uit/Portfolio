@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T12:22:08.355Z",
+  "title": "Design System for Bảo Trung Portfolio",
+  "extensions": {
+    "breakpoints": [
+      { "name": "tablet", "value": "58rem" },
+      { "name": "phone", "value": "40rem" }
+    ],
+    "motion": [
+      {
+        "name": "action-color",
+        "value": "160ms ease",
+        "purpose": "Button color changes on hover. Disabled under reduced motion."
+      }
+    ]
+  }
+}
