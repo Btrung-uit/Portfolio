@@ -218,7 +218,20 @@ img {
 
 .hero h1 span {
     display: block;
+    position: relative;
     color: var(--accent);
+}
+
+.hero h1 span::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-end: -0.18em;
+    inline-size: 1.65em;
+    block-size: clamp(2px, 0.035em, 4px);
+    border-radius: 1em;
+    background: currentColor;
+    transform-origin: left center;
 }
 
 .hero-role {
@@ -271,6 +284,35 @@ img {
 
 .button-accent:hover {
     background: var(--accent-hover);
+}
+
+.hero-actions .button-accent {
+    gap: 0.65em;
+}
+
+.hero-actions .button-accent:active {
+    background: var(--accent-hover);
+    transition-duration: 0s;
+}
+
+.button-arrow {
+    position: relative;
+    flex: none;
+    inline-size: 0.85em;
+    block-size: 2px;
+    background: currentColor;
+}
+
+.button-arrow::after {
+    content: "";
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-start: 50%;
+    inline-size: 0.38em;
+    block-size: 0.38em;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+    transform: translateY(-50%) rotate(-45deg);
 }
 
 .button-ink {
@@ -405,6 +447,27 @@ img {
     width: fit-content;
     cursor: pointer;
     font-weight: 650;
+    list-style: none;
+}
+
+.contributions summary::-webkit-details-marker {
+    display: none;
+}
+
+.contributions summary::before {
+    content: "";
+    display: inline-block;
+    inline-size: 0.38em;
+    block-size: 0.38em;
+    margin-inline-end: 0.6em;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+    vertical-align: 0.15em;
+    transform: rotate(-45deg);
+}
+
+.contributions[open] summary::before {
+    transform: rotate(45deg);
 }
 
 .contributions summary:hover {
@@ -655,6 +718,47 @@ img {
 
     .footer-inner p {
         grid-column: 1 / -1;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero h1 span::after {
+        animation: hero-underline 450ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .button-arrow {
+        transition: transform 160ms ease-out;
+    }
+
+    .hero-actions .button-accent:focus-visible .button-arrow {
+        transform: translateX(4px);
+    }
+
+    .contributions summary::before {
+        transition: transform 200ms ease-out;
+    }
+
+    .contributions[open] > ul {
+        animation: contribution-links-in 200ms ease-out;
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hero-actions .button-accent:hover .button-arrow {
+        transform: translateX(4px);
+    }
+}
+
+@keyframes hero-underline {
+    from {
+        transform: scaleX(0);
+    }
+}
+
+@keyframes contribution-links-in {
+    from {
+        opacity: 0.7;
+        transform: translateY(-4px);
     }
 }
 
