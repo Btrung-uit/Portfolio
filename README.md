@@ -4,7 +4,7 @@ An English-language portfolio for Nguyễn Đức Bảo Trung, a Software Engine
 
 ## Run locally
 
-Open `index.html` in a browser or serve the repository root with a static server. The site uses HTML and CSS, with no build step or runtime dependencies.
+Open `index.html` in a browser or serve the repository root with a static server. The site uses HTML, CSS, and vanilla JavaScript, with no build step or external runtime dependencies.
 
 ## Image and font sources
 

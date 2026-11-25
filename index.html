@@ -9,6 +9,7 @@
     <link rel="icon" type="image/jpeg" href="assets/images/avatar.jpg">
     <link rel="preload" href="assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="style.css">
+    <script src="motion.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -32,7 +33,7 @@
         <section class="hero" id="hero" aria-labelledby="hero-title">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <h1 id="hero-title" lang="vi">Nguyễn Đức <span>Bảo Trung</span></h1>
+                    <h1 id="hero-title" lang="vi"><span>Nguyễn Đức</span> <span class="hero-name-accent">Bảo Trung</span></h1>
                     <p class="hero-role">.NET full-stack developer</p>
                     <p class="hero-description">Software Engineering student at UIT. I build web apps with ASP.NET Core and React, and desktop apps for Windows.</p>
                     <div class="hero-actions">
@@ -42,7 +43,9 @@
                 </div>
 
                 <figure class="portrait">
-                    <img src="assets/images/avatar.jpg" alt="Portrait of Nguyễn Đức Bảo Trung" width="572" height="1024" fetchpriority="high">
+                    <div class="portrait-frame">
+                        <img src="assets/images/avatar.jpg" alt="Portrait of Nguyễn Đức Bảo Trung" width="572" height="1024" fetchpriority="high">
+                    </div>
                     <figcaption>Ho Chi Minh City, Vietnam</figcaption>
                 </figure>
             </div>
