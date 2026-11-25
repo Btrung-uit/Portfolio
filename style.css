@@ -203,6 +203,24 @@ img {
     color: var(--accent);
 }
 
+.hero {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -25%;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 72% 62%, rgb(163 55 109 / 0.34), transparent 34%),
+        radial-gradient(ellipse at 42% 12%, rgb(116 70 167 / 0.52), transparent 49%),
+        conic-gradient(from 208deg at 71% 65%, transparent 0 80deg, rgb(233 250 156 / 0.17) 123deg, transparent 176deg);
+}
+
 .hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
@@ -627,6 +645,15 @@ img {
     justify-self: end;
 }
 
+.lens-filters {
+    position: absolute;
+    pointer-events: none;
+}
+
+.cursor-lens {
+    display: none;
+}
+
 @media (max-width: 58rem) {
     .container {
         width: calc(100% - 3rem);
@@ -729,7 +756,7 @@ img {
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media screen and (prefers-reduced-motion: no-preference) {
     :root {
         --motion-out: cubic-bezier(0.16, 1, 0.3, 1);
         scroll-behavior: smooth;
@@ -754,6 +781,12 @@ img {
         animation: hero-underline 540ms var(--motion-out) 220ms backwards;
     }
 
+    .hero::before {
+        translate: var(--light-x, 0px) var(--light-y, 0px);
+        transition: translate 650ms var(--motion-out);
+        animation: hero-light-drift 4600ms cubic-bezier(0.22, 0.65, 0.3, 1);
+    }
+
     .portrait-frame::after {
         content: "";
         position: absolute;
@@ -769,13 +802,17 @@ img {
         animation: portrait-settle 820ms var(--motion-out);
     }
 
-    .project-media img {
-        transition: opacity 560ms var(--motion-out), translate 560ms var(--motion-out), transform 280ms var(--motion-out);
+    [data-reveal]:not(.reveal-pending) {
+        transition: opacity 480ms var(--motion-out), translate 640ms var(--motion-out);
     }
 
-    .project-media img.reveal-pending {
-        opacity: 0.55;
-        translate: 0 0.85rem;
+    [data-reveal].reveal-pending:not(:focus-within) {
+        opacity: 0;
+        translate: 0 1.5rem;
+    }
+
+    .project-media img {
+        transition: transform 280ms var(--motion-out);
     }
 
     article:has(.project-links a:focus-visible) .project-media img {
@@ -821,6 +858,23 @@ img {
     }
 }
 
+@media screen and (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .cursor-lens.is-visible {
+        display: block;
+        position: fixed;
+        z-index: 5;
+        inset: 0 auto auto 0;
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate3d(var(--lens-x), var(--lens-y), 0) translate(-50%, -50%);
+        backdrop-filter: url("#cursor-refraction") saturate(1.15);
+        background: linear-gradient(145deg, rgb(255 255 255 / 0.23), transparent 36% 69%, rgb(230 212 255 / 0.12));
+        box-shadow: inset 1px 1px 1px rgb(255 255 255 / 0.65), inset -1px -1px 1px rgb(255 255 255 / 0.28), 0 7px 20px rgb(33 24 36 / 0.24);
+    }
+}
+
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-actions .button-accent:hover .button-arrow {
         transform: translateX(4px);
@@ -857,6 +911,12 @@ img {
 @keyframes portrait-settle {
     from {
         transform: scale(1.07);
+    }
+}
+
+@keyframes hero-light-drift {
+    from {
+        transform: translate(-9%, 5%) rotate(-10deg) scale(1.06);
     }
 }
 
